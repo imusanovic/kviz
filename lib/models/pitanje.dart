@@ -19,14 +19,17 @@ class Pitanje {
       required this.netocni}) {
     int r = Random().nextInt(4);
     int c = 0;
+    int t = 0;
     for (int i = 0; i < 4; i++) {
       if (r == i) {
         odgovori.add(tocan);
+        t = i;
       } else {
         odgovori.add(netocni[c]);
         c++;
       }
     }
+    odgovori.add(t);
   }
 
   factory Pitanje.fromJson(Map<String, dynamic> json) {

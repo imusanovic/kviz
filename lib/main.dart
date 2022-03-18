@@ -75,7 +75,7 @@ class _KvizState extends State<Kviz> {
                             child: Container(
                               padding: const EdgeInsets.all(20.0),
                               child: ListView.builder(
-                                  itemCount: snapshot.data!.odgovori.length,
+                                  itemCount: snapshot.data!.odgovori.length - 1,
                                   itemBuilder:
                                       (BuildContext context, int index) {
                                     return TextButton(
@@ -103,6 +103,13 @@ class _KvizState extends State<Kviz> {
                                           setState(() {
                                             boje[index] = Colors.red;
                                             brojPitanja++;
+                                          });
+                                          await Future.delayed(
+                                              const Duration(milliseconds: 500),
+                                              () {});
+                                          setState(() {
+                                            boje[snapshot.data!.odgovori[4]] =
+                                                Colors.green;
                                           });
                                           await Future.delayed(
                                               const Duration(seconds: 2),
