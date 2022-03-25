@@ -16,7 +16,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
   @override
   void initState() {
     super.initState();
-    //futurePitanje = fetchPitanje();
+    futurePitanje = fetchPitanje();
   }
 
   int tocniOdgovori = 0;
@@ -25,9 +25,6 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print(Provider.of<Settings>(context, listen: true).getCategory);
-    futurePitanje = fetchPitanje(
-        kategorija: Provider.of<Settings>(context, listen: true).getCategory);
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -99,7 +96,12 @@ class _QuestionScreenState extends State<QuestionScreen> {
                                           await Future.delayed(
                                               const Duration(seconds: 2), () {
                                             setState(() {
-                                              futurePitanje = fetchPitanje();
+                                              futurePitanje = fetchPitanje(
+                                                  kategorija:
+                                                      Provider.of<Settings>(
+                                                              context,
+                                                              listen: false)
+                                                          .getCategory);
                                               boje = [
                                                 Colors.black,
                                                 Colors.black,
@@ -124,7 +126,12 @@ class _QuestionScreenState extends State<QuestionScreen> {
                                           await Future.delayed(
                                               const Duration(seconds: 2), () {
                                             setState(() {
-                                              futurePitanje = fetchPitanje();
+                                              futurePitanje = fetchPitanje(
+                                                  kategorija:
+                                                      Provider.of<Settings>(
+                                                              context,
+                                                              listen: false)
+                                                          .getCategory);
                                               boje = [
                                                 Colors.black,
                                                 Colors.black,
