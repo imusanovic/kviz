@@ -16,7 +16,9 @@ class _QuestionScreenState extends State<QuestionScreen> {
   @override
   void initState() {
     super.initState();
-    futurePitanje = fetchPitanje();
+    futurePitanje = fetchPitanje(
+        kategorija: Provider.of<Settings>(context, listen: false).getCategory,
+        tezina: Provider.of<Settings>(context, listen: false).getDifficulty);
   }
 
   int tocniOdgovori = 0;
@@ -68,7 +70,15 @@ class _QuestionScreenState extends State<QuestionScreen> {
                               fontSize: 22.0,
                             ),
                           ),
-                          const SizedBox(height: 30.0),
+                          const SizedBox(height: 15.0),
+                          Text(
+                            snapshot.data!.tezina,
+                            textAlign: TextAlign.justify,
+                            style: const TextStyle(
+                              fontSize: 15.0,
+                            ),
+                          ),
+                          const SizedBox(height: 10.0),
                           Text(
                             snapshot.data!.pitanje,
                             textAlign: TextAlign.justify,
@@ -101,7 +111,11 @@ class _QuestionScreenState extends State<QuestionScreen> {
                                                       Provider.of<Settings>(
                                                               context,
                                                               listen: false)
-                                                          .getCategory);
+                                                          .getCategory,
+                                                  tezina: Provider.of<Settings>(
+                                                          context,
+                                                          listen: false)
+                                                      .getDifficulty);
                                               boje = [
                                                 Colors.black,
                                                 Colors.black,
@@ -131,7 +145,11 @@ class _QuestionScreenState extends State<QuestionScreen> {
                                                       Provider.of<Settings>(
                                                               context,
                                                               listen: false)
-                                                          .getCategory);
+                                                          .getCategory,
+                                                  tezina: Provider.of<Settings>(
+                                                          context,
+                                                          listen: false)
+                                                      .getDifficulty);
                                               boje = [
                                                 Colors.black,
                                                 Colors.black,

@@ -23,9 +23,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
   final _settingsKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    print('hej:');
-    print(Provider.of<Settings>(context, listen: true).getCategory);
-    //cat = Provider.of<Settings>(context, listen: true).getCategory;
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
@@ -47,6 +44,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       } else {
                         return DropdownButton<String>(
                           isExpanded: true,
+                          hint: Text(snapshot.data!
+                                  .where((e) =>
+                                      e['id'].toString() ==
+                                      Provider.of<Settings>(context,
+                                              listen: true)
+                                          .getCategory)
+                                  .toList()
+                                  .isEmpty
+                              ? ''
+                              : snapshot.data!
+                                  .where((e) =>
+                                      e['id'].toString() ==
+                                      Provider.of<Settings>(context,
+                                              listen: true)
+                                          .getCategory)
+                                  .toList()
+                                  .first['name']),
                           value: cat,
                           icon: const Icon(Icons.arrow_downward),
                           elevation: 16,
@@ -79,6 +93,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
               DropdownButton<String>(
                 isExpanded: true,
                 value: dif,
+                hint: Text(Provider.of<Settings>(context, listen: false)
+                    .getDifficulty),
                 icon: const Icon(Icons.arrow_downward),
                 elevation: 16,
                 underline: Container(
@@ -88,6 +104,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 onChanged: (String? newValue) {
                   setState(() {
                     dif = newValue!;
+                    Provider.of<Settings>(context, listen: false)
+                        .chooseDifficulty(dif!);
                   });
                 },
                 items: <String>['easy', 'medium', 'hard']
