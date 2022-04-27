@@ -15,7 +15,6 @@ AppBar createAppBar(BuildContext context, bool buttons, String naslov) {
             IconButton(
               onPressed: () async {
                 await _auth.signOut();
-                //Navigator.pushNamed(context, '/settings');
               },
               icon: const Icon(Icons.logout),
             )

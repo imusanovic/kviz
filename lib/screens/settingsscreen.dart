@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kviz/models/question.dart';
 import 'package:kviz/models/settings.dart';
+import 'package:kviz/screens/ui_elements.dart';
 import 'package:provider/provider.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -24,7 +25,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: createAppBar(context, true, 'Postavke'),
       body: Padding(
         padding: const EdgeInsets.all(30.0),
         child: Form(
